@@ -1,17 +1,16 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import { v4 } from "uuid";
 
-export class CreateSetings1619464441189 implements MigrationInterface {
+export class CreateSettings1619789656926 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
-
             new Table({
                 name: "settings",
                 columns: [
                     {
                         name: "id",
-                        type: "uuid",
-                        generationStrategy: "uuid",
+                        type: "v4",
                         isPrimary: true
                     },
                     {
@@ -20,7 +19,7 @@ export class CreateSetings1619464441189 implements MigrationInterface {
                     },
                     {
                         name: "chat",
-                        type: "boolean" ,
+                        type: "boolean",
                         default: true
                     },
                     {
@@ -35,11 +34,10 @@ export class CreateSetings1619464441189 implements MigrationInterface {
                     }
                 ]
             })
-
         )
     }
+
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropTable("settings")
     }
-
 }
